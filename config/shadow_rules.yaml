@@ -1,0 +1,36 @@
+version: shadow-v2
+platform: pc
+ea_tax_rate: 0.05
+no_lookahead: true
+buy:
+  execution_observation_path:
+    require_signal_timestamp_before_execution_observation: true
+    price_rule: "fill only from an executable listing/observation at or below signal.max_buy_price after slippage"
+    slippage_ticks: 1
+  acquisition_model_path:
+    enabled: true
+    rule: "reference prices are anchors only; fill probability/price/delay/quantity come from learned undercut acquisition distributions"
+    segment_by: [card, price_tier, category, liquidity, time_of_day, market_regime, content_timing, volatility]
+    prohibit_universal_discount_assumption: true
+    stale_reference_uncertainty_reduces_fill_probability: true
+sell:
+  require_two_consecutive_snapshots_at_or_above_exit: true
+  snapshot_confirmation_gap_seconds: 60
+  undercut_ticks: 1
+  slippage_ticks: 1
+partial_fills:
+  enabled: true
+  default_fill_fraction_when_depth_unknown: 0.25
+position_limits:
+  max_fraction_of_liquid_coins_per_card: 0.20
+  max_fraction_of_liquid_coins_per_event_cluster: 0.40
+quality_tracking:
+  separate_signal_quality_from_execution_quality: true
+  record_reference_observation: true
+  record_execution_observation: true
+  record_acquisition_probability: true
+  record_acquisition_delay: true
+recordkeeping:
+  immutable_predictions: true
+  immutable_decisions: true
+  store_source_snapshot_ids: true

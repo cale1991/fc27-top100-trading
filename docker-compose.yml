@@ -1,0 +1,115 @@
+services:
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_DB: fc27
+      POSTGRES_USER: fc27
+      POSTGRES_PASSWORD: fc27
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/sql/bootstrap.sql:/docker-entrypoint-initdb.d/001-bootstrap.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fc27 -d fc27"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  migrate:
+    build:
+      context: .
+      dockerfile: infra/docker/collector.Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://fc27:fc27@postgres:5432/fc27
+      REDIS_URL: redis://redis:6379/0
+      RAW_STORE_PATH: /app/data/raw
+      UPLOAD_STORE_PATH: /app/data/uploads
+    command: sh -c "alembic upgrade head && python scripts/seed_sources.py && python scripts/seed_app_state.py && python scripts/seed_strategies.py && python scripts/seed_provider_audit.py"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: .
+      dockerfile: infra/docker/collector.Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://fc27:fc27@postgres:5432/fc27
+      REDIS_URL: redis://redis:6379/0
+      RAW_STORE_PATH: /app/data/raw
+      UPLOAD_STORE_PATH: /app/data/uploads
+    command: celery -A fc27trader.scheduler.celery_app:app worker -l INFO -Q content,market_hot,market_broad,reference
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+
+  beat:
+    build:
+      context: .
+      dockerfile: infra/docker/collector.Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://fc27:fc27@postgres:5432/fc27
+      REDIS_URL: redis://redis:6379/0
+      RAW_STORE_PATH: /app/data/raw
+      UPLOAD_STORE_PATH: /app/data/uploads
+    command: celery -A fc27trader.scheduler.celery_app:app beat -l INFO
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/collector.Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://fc27:fc27@postgres:5432/fc27
+      REDIS_URL: redis://redis:6379/0
+      RAW_STORE_PATH: /app/data/raw
+      UPLOAD_STORE_PATH: /app/data/uploads
+    command: uvicorn fc27trader.api.app:app --host 0.0.0.0 --port 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - ./data:/app/data
+
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+      args:
+        BACKEND_INTERNAL_URL: http://api:8080
+    environment:
+      BACKEND_INTERNAL_URL: http://api:8080
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:

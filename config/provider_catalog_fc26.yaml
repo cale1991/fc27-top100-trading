@@ -1,0 +1,258 @@
+providers:
+  futbin:
+    name: FUTBIN
+    endpoint_or_surface: Website/app live PC prices; no public developer API
+    pc_supported: true
+    documented_rate_limit: null
+    cost: Free/ad-free consumer plans; no public data-feed price
+    fields_available:
+    - pc_price
+    - console_price
+    - player_metadata
+    - price_history
+    - market_indices
+    - sbcs
+    - evolutions
+    provider_timestamp_field: displayed update age on price surfaces
+    documented_freshness: live market display; exact service-level freshness not published
+    terms_state: prohibited
+    terms_summary: Automated scraping/data mining prohibited without written permission;
+      used only as manual/licensed benchmark.
+    terms_url: https://www.futbin.com/tos
+    upstream_provenance: FUTBIN own market tracking
+    notes: Benchmark source, not an automated collector unless written permission/data
+      feed is obtained.
+    declared_roles:
+    - manual_benchmark
+  futgg:
+    name: FUT.GG
+    endpoint_or_surface: Website/app live prices; internal endpoints are not a public
+      API
+    pc_supported: true
+    documented_rate_limit: null
+    cost: Consumer service; no public market-data feed price located
+    fields_available:
+    - pc_price
+    - console_price
+    - player_metadata
+    - sbcs
+    - evolutions
+    provider_timestamp_field: site-dependent
+    documented_freshness: markets described as live; no public SLA located
+    terms_state: prohibited
+    terms_summary: Terms restrict robots/spiders/scrapers/web crawlers and automated
+      access; no production collector without permission.
+    terms_url: https://www.fut.gg/terms-of-service/
+    upstream_provenance: unknown
+    declared_roles:
+    - manual_benchmark
+  futwiz:
+    name: FUTWIZ
+    endpoint_or_surface: Public FC26 player pages and PC market pages
+    pc_supported: true
+    documented_rate_limit: null
+    cost: Consumer subscription £1.25/month or £12.50/year for ad-free; no public
+      API/feed pricing found
+    fields_available:
+    - pc_price
+    - console_price
+    - displayed_update_age
+    - active_auctions_surface
+    - latest_sales_surface
+    - player_metadata
+    - market_indices
+    provider_timestamp_field: 'displayed Updated: ... ago age'
+    documented_freshness: no public SLA; observed PC update ages range from seconds/minutes
+      to hours depending card
+    terms_state: unresolved
+    terms_summary: EA-approved community partner, but no documented public market-price
+      API or explicit server automation permission was located.
+    terms_url: null
+    upstream_provenance: unknown
+    notes: Technically useful manual benchmark/candidate; production API/feed must
+      be obtained directly from FUTWIZ.
+    declared_roles:
+    - manual_benchmark
+  futnext:
+    name: FUTNext / FC Enhancer
+    endpoint_or_surface: FC Enhancer real-time price service; undocumented enhancer-api
+      price endpoint observed in client/community code
+    pc_supported: true
+    documented_rate_limit: Fair-use restrictions; no public API rate contract located
+    cost: Gold $6.49/month + VAT consumer plan; no public server/API feed price located
+    fields_available:
+    - definitionId
+    - prices
+    provider_timestamp_field: null
+    documented_freshness: Product advertises real-time prices; no source timestamp/SLA
+      located for price endpoint
+    terms_state: permission_required
+    terms_summary: Consumer terms grant personal non-commercial use and reserve service
+      restrictions; undocumented endpoint is validation-only until API permission
+      is obtained.
+    terms_url: https://www.futnext.com/tos
+    upstream_provenance: unknown
+    notes: Strong technical candidate because PC price surface exists and service
+      status is public, but cannot qualify <=5m without propagation testing and authorization.
+    declared_roles:
+    - manual_benchmark
+  thecoinprinter:
+    name: The Coin Printer
+    endpoint_or_surface: https://api.thecoinprinter.com/api/v1/public/players/search
+    pc_supported: true
+    documented_rate_limit: 60 requests/minute per API key
+    cost: Paid approved-partner API; price supplied by provider after contact
+    fields_available:
+    - id
+    - name
+    - rating
+    - group_type
+    - console_price
+    - pc_price
+    - league
+    - team
+    - nationality
+    - position
+    - alt_positions
+    - stats
+    - year
+    - popularity
+    - updated_at
+    provider_timestamp_field: updated_at
+    documented_freshness: Prices refreshed multiple times per day
+    terms_state: license_required
+    terms_summary: Read-only approved-partner API available under paid plan/API key.
+    terms_url: https://www.thecoinprinter.com/terms
+    upstream_provenance: unknown
+    notes: Not eligible for HOT_REFERENCE on documented freshness; still useful as
+      REFERENCE/HISTORICAL/METADATA subject to plan terms.
+    declared_roles:
+    - reference
+    - historical
+    - metadata
+  futdb:
+    name: FUT-DB
+    endpoint_or_surface: https://api.fut-db.com/
+    pc_supported: true
+    documented_rate_limit: Premium 20,000 requests/day; no bulk multi-player price
+      request
+    cost: Free API key for base database access; Premium €79/month for prices/search/full
+      stats
+    fields_available:
+    - players
+    - prices
+    - nations
+    - leagues
+    - clubs
+    - card_types
+    - player_stats
+    provider_timestamp_field: pc.priceUpdate on the documented player price response
+    documented_freshness: 30 minutes to 24 hours depending on rating/rarity
+    terms_state: license_required
+    terms_summary: Documented JSON API with account/premium access.
+    terms_url: https://fut-db.com/
+    upstream_provenance: unknown
+    notes: Not eligible for HOT_REFERENCE on documented freshness; still useful as
+      REFERENCE/HISTORICAL/METADATA.
+    declared_roles:
+    - reference
+    - historical
+    - metadata
+  parse_futbin:
+    name: Parse.bot FUTBIN wrapper
+    endpoint_or_surface: Third-party maintained REST wrapper over FUTBIN public data
+    pc_supported: true
+    documented_rate_limit: Free 5/min; paid up to 500/min depending tier
+    cost: 'Parse: Free 200; Hobby $30/1k; Developer $100/5k; Team $300/20k; Company
+      $1000/100k credits. Wrapper calls currently 1 credit/success.'
+    fields_available:
+    - pc_price
+    - ps_price
+    - stats
+    - sbcs
+    - evos
+    - objectives
+    - market_trends
+    provider_timestamp_field: not guaranteed for player price responses
+    documented_freshness: wrapper health checked; upstream price freshness not guaranteed
+    terms_state: license_required
+    terms_summary: Parse provides a documented authenticated commercial API product. Private-system integration is optional/disabled by default; upstream FUTBIN relationship is unofficial and remains an external-vendor risk.
+    terms_url: https://parse.bot/marketplace/1b6234f9-0dfb-4cca-99b4-2d6d37aec6a7/futbin-com-api
+    upstream_provenance: FUTBIN public website
+    notes: Use selectively as REFERENCE/METADATA when PARSE_FUTBIN_ENABLED=true and a key is configured; never execution. price_ps remains provider-labelled PlayStation, not universal shared-console. ~30 catalogue rows/page and 1 credit/call make full-universe high-frequency collection uneconomic.
+    declared_roles:
+    - reference
+    - historical
+    - metadata
+  ea_internal_webapp:
+    name: EA Web/Companion internal Transfer Market API
+    endpoint_or_surface: Authenticated internal transfermarket endpoint used by EA
+      Web App
+    pc_supported: true
+    documented_rate_limit: Not a public third-party API; account/session restrictions
+      apply
+    cost: EA account/game access
+    fields_available:
+    - trade_id
+    - current_bid
+    - buy_now
+    - starting_bid
+    - expires
+    - item_ids
+    provider_timestamp_field: live auction state, not a third-party price timestamp
+    documented_freshness: Direct market query when used interactively
+    terms_state: prohibited
+    terms_summary: Not a public market-data API and outside this project's no-transfer-market-bot
+      execution boundary.
+    terms_url: https://help.ea.com/en/articles/ea-sports-fc/transfer-market-web-and-companion-apps/
+    upstream_provenance: EA Transfer Market
+    notes: Useful only for manual spot checks/ground truth; never a cloud collector.
+    declared_roles:
+    - manual_benchmark
+  futzip:
+    name: FUTZIP
+    endpoint_or_surface: 'Public RSS: movers/new/SBC'
+    pc_supported: false
+    documented_rate_limit: null
+    cost: Free public RSS
+    fields_available:
+    - market_move_events
+    - new_card_events
+    - sbc_events
+    - stable_provider_card_id
+    - guid
+    - provider_timestamp
+    provider_timestamp_field: pubDate/GUID timestamp
+    documented_freshness: Event feed; provider site says ~15-minute price sweep, but
+      RSS platform identity is not explicit
+    terms_state: public_feed
+    terms_summary: RSS page explicitly invites Discord/Telegram RSS bots and readers.
+      Storage/commercial/redistribution rights not explicitly established.
+    terms_url: https://futzip.com/feeds
+    upstream_provenance: FUTZIP own observations
+    notes: RSS mover prices are UNKNOWN/MARKET_CONTEXT only; never PC reference or
+      execution.
+    declared_roles:
+    - content
+    - market_context
+  ea_official:
+    name: EA SPORTS FC Official
+    endpoint_or_surface: Public EA FC news/content
+    pc_supported: false
+    documented_rate_limit: null
+    cost: Free public content
+    fields_available:
+    - news
+    - promos
+    - rules
+    - updates
+    - announcements
+    - pack_probabilities
+    provider_timestamp_field: published date where exposed
+    documented_freshness: Official publication timing
+    terms_state: public_content
+    terms_summary: Authoritative content/context; not market-price data.
+    terms_url: https://www.ea.com/legal
+    upstream_provenance: EA
+    declared_roles:
+    - content

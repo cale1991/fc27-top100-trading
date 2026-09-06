@@ -1,0 +1,333 @@
+version: 1
+research_state: SOURCE_EVIDENCE_ONLY_NOT_BACKTESTED
+sources:
+- strategies:
+  - bidding-below-bin
+  - reward-supply-buying
+  - content-time-supply-crash
+  game_cycle: FIFA22
+  source_kind: editorial_guide
+  title: 'FIFA 22 Ultimate Team trading tips: How to trade in FUT'
+  author: Red Bull editorial
+  url: https://www.redbull.com/ie-en/fifa-22-ultimate-team-trading-tips
+  evidence_type: mechanism_guide
+  quality_score: 0.72
+  notes: Documents clustered low bids after Lightning Rounds/reward supply; mechanism
+    evidence, not a controlled backtest.
+- strategies:
+  - clubstock
+  - fodder-investing
+  - reward-supply-buying
+  game_cycle: FIFA22
+  source_kind: futwiz_editorial
+  title: FIFA 22 Clubstock Guide - 12th December
+  author: TygrrFUT
+  published_at: '2021-12-12T10:11:00Z'
+  url: https://www.futwiz.com/news/article/fifa-22-clubstock-guide-12th-december/7168
+  evidence_type: repeated_trader_guide
+  quality_score: 0.76
+  notes: Documents reward-supply entry, fodder clubstock and content-dependent exits;
+    claimed returns remain unverified until backtested.
+- strategies:
+  - out-of-pack-investing
+  - discard-near-discard
+  game_cycle: FIFA22
+  source_kind: futwiz_editorial
+  title: FIFA 22 TOTW 13 Investing
+  author: TygrrFUT
+  published_at: '2021-12-19T09:57:00Z'
+  url: https://www.futwiz.com/news/article/fifa-22-totw-13-investing/7172
+  evidence_type: documented_trade_examples
+  quality_score: 0.76
+  notes: Contains dated TOTW entry/price examples and scarcity/SBC rationale; selected
+    examples are not treated as proof.
+- strategies:
+  - high-volume-flipping
+  - sbc-solution-trading
+  game_cycle: FIFA23
+  source_kind: verified_trader_profile
+  title: 'FIFA 23: Trading tips from Top-100 trader GamingAlm'
+  author: Jan 'GamingAlm' Bergmann / kicker
+  published_at: '2022-12-27T14:19:00Z'
+  url: https://www.kicker.de/fifa-23-ohne-echtgeld-an-die-fut-spitze-trading-tipps-von-profi-gamingalm-920072/artikel
+  evidence_type: top100_trader_method
+  quality_score: 0.9
+  notes: Kicker identifies GamingAlm as FIFA 22 Top-100 and documents flipping/SBC-solution
+    methods.
+- strategies:
+  - sbc-solution-trading
+  - high-value-spread-trading
+  - icon-trading
+  game_cycle: FIFA23
+  source_kind: trader_interview
+  title: FIFA 23 Trading Tips With SebFUT
+  author: SebFUT / GGRecon
+  url: https://www.ggrecon.com/guides/fifa-23-trading-tips-sebfut/
+  evidence_type: trader_interview
+  quality_score: 0.74
+  notes: Documents capital thresholds, SBC solution trading and caution on Icon liquidity.
+- strategies:
+  - bidding-below-bin
+  - lazy-listing
+  game_cycle: FIFA23
+  source_kind: educational_guide
+  title: FIFA 23 Trading Methods
+  author: Cashify editorial
+  url: https://www.cashify.in/fifa-23-trading-methods-tips-guide-for-beginners
+  evidence_type: community_method_documentation
+  quality_score: 0.48
+  notes: Useful terminology/mechanism source; lower evidence weight because it is
+    not trader-performance verification.
+- strategies:
+  - icon-trading
+  - mass-bidding
+  - discard-near-discard
+  - promo-panic-buying
+  - overnight-timezone-trading
+  game_cycle: FIFA22
+  source_kind: trader_self_report
+  title: Rickth21 trading methods / leaderboard self-report
+  author: Rickth21
+  published_at: '2022-08-02T00:00:00Z'
+  url: https://www.youtube.com/watch?v=wDI_-AG2_4A
+  evidence_type: trader_method_and_rank_claim
+  quality_score: 0.68
+  notes: YouTube description states 17th worldwide Playstation / 235m+ transfer profit
+    at publication; rank is self-reported and should be independently checked where
+    possible.
+- strategies:
+  - early-game-starter-meta-cycle
+  - discard-near-discard
+  - fodder-investing
+  game_cycle: FC25
+  source_kind: futgg_editorial
+  title: Top 5 tips for starting EA Sports FC 25
+  author: Nofil Khan / FUT.GG
+  published_at: '2024-09-12T00:00:00Z'
+  url: https://www.fut.gg/news/top-5-tips-for-starting-ea-sports-fc-25/
+  evidence_type: cycle_specific_market_guide
+  quality_score: 0.7
+  notes: Documents early-cycle scarcity/demand logic and keep/sell categories; not
+    a profitability backtest.
+- strategies:
+  - evolution-anticipation
+  game_cycle: FC24
+  source_kind: official_rules
+  title: EA SPORTS FC 24 Ultimate Team Deep Dive
+  author: EA SPORTS
+  published_at: '2023-08-08T00:00:00Z'
+  url: https://www.ea.com/games/ea-sports-fc/pitch-notes/news/fc-24-ultimate-team-deep-dive
+  evidence_type: structural_change
+  quality_score: 0.96
+  notes: Primary source establishing the introduction of Evolutions, a structural
+    break for pre-FC24 strategy comparability.
+- strategies:
+  - evolution-anticipation
+  game_cycle: FC26
+  source_kind: official_rules
+  title: EA SPORTS FC 26 FUT Deep Dive
+  author: EA SPORTS
+  published_at: '2025-08-05T00:00:00Z'
+  url: https://www.ea.com/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-fut-deep-dive
+  evidence_type: structural_change
+  quality_score: 0.98
+  notes: Primary source documents repeatable Evolutions, GK Evolutions and transfer-market
+    access changes; temporal validity input.
+- strategies:
+  - fodder-investing
+  - sbc-anticipation
+  game_cycle: FC26
+  source_kind: community_observation
+  title: 'PSA: take SBC prices with a pinch of salt right now'
+  author: Reddit community post
+  published_at: '2026-01-24T00:00:00Z'
+  url: https://www.reddit.com/r/EASportsFC/comments/1qlj4pq/
+  evidence_type: dated_market_observation
+  quality_score: 0.45
+  notes: Documents large contemporaneous FC26 high-rated fodder moves around a desirable
+    SBC; anecdotal evidence only.
+- strategies:
+  - promo-panic-buying
+  - post-promo-rebound
+  game_cycle: FC25
+  source_kind: community_observation
+  title: Market now sure is tanking
+  author: Reddit community discussion
+  published_at: '2024-11-23T00:00:00Z'
+  url: https://www.reddit.com/r/EASportsFC/comments/1gy9ukj/
+  evidence_type: dated_market_observation
+  quality_score: 0.42
+  notes: Documents Black Friday panic/rebound community expectation; must be tested
+    against actual price series.
+- strategies:
+  - promo-panic-buying
+  - post-promo-rebound
+  game_cycle: FC26
+  source_kind: community_observation
+  title: Market Crash
+  author: Reddit community discussion
+  published_at: '2025-11-19T00:00:00Z'
+  url: https://www.reddit.com/r/EAFC/comments/1p15pno/
+  evidence_type: dated_market_observation
+  quality_score: 0.42
+  notes: Shows recurring pre-Black-Friday panic narrative in FC26; comments disagree,
+    which is useful evidence of uncertainty.
+- strategies:
+  - evolution-anticipation
+  game_cycle: FC24
+  source_kind: official_forum
+  title: Is it against the rules to trade in evolutions?
+  author: EA Forums / community manager response
+  url: https://forums.ea.com/discussions/fc-24-ultimate-team-en/is-it-against-the-rules-to-trade-in-evolutions/11501289
+  evidence_type: rules_and_market_mechanism
+  quality_score: 0.76
+  notes: Official response says anticipating future item market value and buying a
+    few cheaply is not inherently prohibited.
+- strategies:
+  - early-game-starter-meta-cycle
+  - sbc-anticipation
+  game_cycle: FC26
+  source_kind: trader_interview
+  title: How To Start FC 26! w/Nate The FUT Accountant
+  author: The FUT Accountant / FUT Weekly
+  published_at: '2025-09-09T12:24:00Z'
+  url: https://podfollow.com/fut-weekly/episode/1c339ed0fcdc546ad5862f69e9fa71893a8b1983/view
+  evidence_type: cycle_specific_trader_interview
+  quality_score: 0.78
+  notes: Long-running trader discussing early coin making, what to target, SBCs and
+    FC26 power curve.
+- strategies:
+  - fodder-investing
+  - promo-panic-buying
+  - post-promo-rebound
+  game_cycle: FC24
+  source_kind: futwiz_editorial
+  title: How to get free packs and make coins for TOTY in FC 24
+  author: The Toffee Trader / FUTWIZ
+  published_at: '2024-01-10T21:35:00Z'
+  url: https://www.futwiz.com/news/article/how-to-get-free-packs-and-make-coins-for-toty-in-fc-24/7446
+  evidence_type: cycle_specific_market_guide
+  quality_score: 0.76
+  notes: Documents supply-heavy TOTY entry logic for fodder and expensive-card selloff/rebuy
+    logic. Advice is source evidence, not measured proof.
+- strategies:
+  - reward-supply-buying
+  - out-of-pack-investing
+  - early-game-starter-meta-cycle
+  - fodder-investing
+  game_cycle: FC26
+  source_kind: established_team_guide
+  title: This is how the EA FC 26 market works
+  author: Team Gullit
+  published_at: '2025-09-15T00:00:00Z'
+  url: https://www.teamgullit.com/ea-fc-26/market
+  evidence_type: cycle_specific_market_guide
+  quality_score: 0.72
+  notes: Documents Thursday reward-supply buying, inform out-of-pack scarcity, early-cycle
+    meta demand and SBC-driven fodder cycles. Profitability claims are not treated
+    as backtest results.
+- strategies:
+  - fodder-investing
+  - sbc-anticipation
+  game_cycle: FC25
+  source_kind: community_failure_observation
+  title: Why have high rated fodder crashed so much?
+  author: Reddit community discussion
+  published_at: '2025-02-23T00:00:00Z'
+  url: https://www.reddit.com/r/EAFC/comments/1iwhi3d
+  evidence_type: dated_failure_observation
+  direction: contradicts
+  quality_score: 0.46
+  notes: 'A dated failed anticipation example: expected Icon SBC demand did not materialize
+    because requirements were lower than expected. Useful for catalyst-failure/invalidation
+    research, not a proof that fodder investing fails generally.'
+- strategies:
+  - fodder-investing
+  - rating-band-investing
+  game_cycle: FC26
+  source_kind: community_structural_observation
+  title: 2 months of FC26 | 100+ players released via SBCs
+  author: Reddit community discussion
+  published_at: '2025-11-18T00:00:00Z'
+  url: https://www.reddit.com/r/EASportsFC/comments/1p04k0m/
+  evidence_type: structural_decay_observation
+  direction: mixed
+  quality_score: 0.48
+  notes: Community discussion notes that some rating bands such as 84s did not behave
+    as older cycles despite many SBCs, suggesting FC26 supply/demand structure requires
+    rating-specific validation.
+- strategies:
+  - undercut-acquisition
+  - content-time-supply-crash
+  - reward-supply-buying
+  - high-volume-flipping
+  game_cycle: FIFA22
+  source_kind: futwiz_editorial
+  title: FIFA 22 - Sniping Guide
+  author: TygrrFUT / FUTWIZ
+  url: https://www.futwiz.com/news/article/fifa-22-sniping-guide/7111
+  evidence_type: execution_method_guide
+  quality_score: 0.74
+  notes: Documents peak-listing windows, 6PM content and reward/mass-supply periods
+    as acquisition opportunities. This is mechanism/execution evidence, not a controlled
+    profitability result.
+- strategies:
+  - clubstock
+  - fodder-investing
+  - high-volume-flipping
+  - mass-bidding
+  - out-of-pack-investing
+  game_cycle: FC26
+  source_kind: established_team_guide
+  title: These are the best EA FC 26 trading methods
+  author: Team Gullit
+  published_at: '2025-09-09T00:00:00Z'
+  url: https://www.teamgullit.com/ea-fc-26/best-trading-methods
+  evidence_type: cycle_specific_market_guide
+  quality_score: 0.69
+  notes: Current-cycle descriptions of clubstock, flipping, mass-bidding/in-form style
+    methods. Marketing claims such as best/safe are not imported as measured evidence.
+- strategies:
+  - evolution-anticipation
+  - early-game-starter-meta-cycle
+  game_cycle: FC25
+  source_kind: official_rules
+  title: EA SPORTS FC 25 Features Update
+  author: EA SPORTS
+  published_at: '2025-01-31T00:00:00Z'
+  url: https://www.ea.com/games/ea-sports-fc/fc-25/news/fc-25-pitch-notes-features-update
+  evidence_type: structural_change
+  quality_score: 0.97
+  notes: Primary source documenting two active Evolution slots and updated starter
+    packs; used as temporal-validity evidence, not strategy profitability proof.
+- strategies:
+  - evolution-anticipation
+  - reward-supply-buying
+  - early-game-starter-meta-cycle
+  game_cycle: FC26
+  source_kind: trader_podcast
+  title: FC 26 Starts & Store Packs Cause A Stir! w/Nate The FUT Accountant
+  author: The FUT Accountant / FUT Weekly
+  published_at: '2025-09-23T16:43:00Z'
+  url: https://podcasts.apple.com/bh/podcast/fc-26-starts-store-packs-cause-a-stir-w-nate-the/id1163606279?i=1000728082864
+  evidence_type: cycle_specific_market_discussion
+  quality_score: 0.76
+  notes: Timestamped current-cycle discussion of store-pack market dynamics, SBCs,
+    Evolutions, tournament requirements and silver price effects; claims remain qualitative
+    until matched to market data.
+- strategies:
+  - early-game-starter-meta-cycle
+  - sbc-anticipation
+  - lazy-listing
+  - high-volume-flipping
+  game_cycle: FC26
+  source_kind: verified_trader_profile
+  title: 'FC 26: FUT-Trading - So macht ihr schon vor Voll-Release massig Münzen'
+  author: Jan 'GamingAlm' Bergmann / kicker
+  published_at: '2025-09-19T18:45:00Z'
+  url: https://www.kicker.at/so-macht-ihr-in-fc-26-schon-vor-voll-release-massig-muenzen-1147020/artikel
+  evidence_type: cycle_specific_trader_method
+  quality_score: 0.86
+  notes: Kicker again documents GamingAlm in FC26, including early non-rare gold acquisition,
+    above-market/lazy relisting, chemistry/SBC demand and content timing. This supports
+    cross-cycle method continuity but is not a profitability backtest.

@@ -1,0 +1,84 @@
+# Collection effort is dynamically allocated. No fixed production watchlist.
+jobs:
+  ea_news_fc26: {enabled: true, queue: content, every_seconds: 120}
+  ea_news_fc27: {enabled: true, queue: content, every_seconds: 120}
+  futzip_movers:
+    enabled: true
+    queue: content
+    every_seconds: 300
+    note: "Public RSS event stream. UNKNOWN market context unless FUTZIP explicitly identifies a segment."
+  futzip_new:
+    enabled: true
+    queue: content
+    every_seconds: 300
+    note: "Public RSS new-card events; conservative identity mapping."
+  futzip_sbc:
+    enabled: true
+    queue: content
+    every_seconds: 300
+    note: "Public RSS SBC catalyst feed; EA official content remains authoritative on conflicts."
+  opportunity_discovery:
+    enabled: true
+    queue: market_broad
+    every_seconds: 120
+    note: "Re-rank the broadest currently observable PC universe; this does not require HOT_REFERENCE coverage."
+  attention_reallocation:
+    enabled: true
+    queue: market_hot
+    every_seconds: 120
+    note: "Recompute ephemeral collection_targets from positions, candidates, catalysts, movement and volume."
+  hot_reference:
+    enabled: false
+    queue: market_hot
+    every_seconds: 120
+    source: optional_hot_reference_provider
+    note: "Optional high-quality reference role; <=300s qualification applies only here."
+  broad_reference:
+    enabled: false
+    queue: market_broad
+    every_seconds: 300
+    source: configured_reference_provider
+    note: "Use provider-supported cadence; reference age/uncertainty are stored and modeled."
+  thecoinprinter_recent:
+    enabled: true
+    queue: reference
+    every_seconds: 1800
+    note: "Runs only when THECOINPRINTER_API_KEY is configured. REFERENCE/METADATA only; never executable."
+  futdb_universe:
+    enabled: true
+    queue: reference
+    every_seconds: 21600
+    note: "Runs only when FUTDB_API_KEY is configured. Broad FC26 metadata sync, not a watchlist."
+  futdb_reference_prices:
+    enabled: true
+    queue: reference
+    every_seconds: 1800
+    note: "Runs only with FUTDB_API_KEY + FUTDB_PREMIUM_PRICES_ENABLED. Adaptive REFERENCE polling; never executable."
+
+  parse_futbin_catalogue:
+    enabled: true
+    queue: reference
+    every_seconds: 21600
+    note: "Runs only when PARSE_FUTBIN_ENABLED=true and PARSE_API_KEY is configured. Cost-aware catalogue refresh; REFERENCE/METADATA only."
+  parse_futbin_hot:
+    enabled: true
+    queue: market_hot
+    every_seconds: 900
+    note: "Runs only when enabled/keyed. HOT_SET targeted detail refresh; deterministic scarce-credit allocation."
+
+  community_reputation:
+    enabled: true
+    queue: market_broad
+    every_seconds: 3600
+    note: "Recalculate trader predictive reputation from resolved timestamped calls."
+
+  strategy_backtests:
+    enabled: true
+    queue: market_broad
+    every_seconds: 3600
+    note: "Refresh FC26-first measured strategy performance only when labeled samples exist."
+  strategy_trader_reputation:
+    enabled: true
+    queue: market_broad
+    every_seconds: 3600
+    note: "Update trader quality conditional on matched historical strategy; follower count is not used."

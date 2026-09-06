@@ -1,0 +1,51 @@
+sources:
+  futzip:
+    automation: allowed_public_rss
+    training_use: provider_context_with_provenance
+    platform: unknown_in_rss
+    priority: event_context
+  ea_official:
+    automation: allowed_public_html
+    training_use: allowed_for_facts_and_events
+    platform: all
+    priority: primary_content
+  futbin:
+    automation: prohibited_without_written_permission
+    training_use: do_not_ingest_automatically
+    platform: pc_and_console
+    priority: manual_validation_only
+  futgg:
+    automation: prohibited_without_written_permission
+    training_use: prohibited_without_prior_written_consent
+    platform: pc_and_console
+    priority: manual_validation_only
+  futwiz:
+    automation: permission_required_until_terms_api_are_confirmed
+    training_use: manual_validation_only
+    platform: pc_and_console
+    priority: manual_validation_only
+  futdb:
+    automation: api_key_supported
+    training_use: permitted_subject_to_account_terms
+    platform: provider_defined
+    priority: metadata_and_reference_price
+  thecoinprinter:
+    automation: approved_partner_api_key
+    training_use: verify_plan_terms_before_model_training
+    platform: pc_and_console
+    priority: reference_only_rejected_hot_freshness
+
+  futnext:
+    automation: permission_required_for_server_ingestion
+    training_use: permission_required
+    platform: pc_and_console
+    priority: hot_candidate_pending_validation
+
+  parse_futbin:
+    automation: optional_documented_commercial_api
+    training_use: reference_with_provenance
+    platform: pc_and_provider_labelled_playstation
+    priority: optional_structured_provider
+    enabled_by_default: false
+    external_vendor_dependency: true
+    official_futbin_api: false

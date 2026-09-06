@@ -1,0 +1,35 @@
+version: 2
+platform: pc
+game_year: 26
+benchmark_source: futbin_manual
+basket_purpose: provider_qualification_benchmark_only
+hot_reference_gate:
+  min_paired_cards: 50
+  max_effective_staleness_seconds: 300
+  require_distinct_pc_price: true
+  require_authorized_automation_for_production: true
+# Compatibility for existing CLI; applies only to HOT_REFERENCE qualification.
+hard_gates:
+  min_paired_cards: 50
+  max_effective_staleness_seconds: 300
+category_minimums:
+  fodder: 12
+  meta_gold: 10
+  icon_hero: 14
+  promo: 14
+freshness:
+  request_latency_is_not_data_freshness: true
+  prefer_provider_timestamp: true
+  missing_timestamp_policy: require_propagation_test_for_hot_reference
+  propagation_test:
+    poll_interval_seconds: 60
+    maximum_match_delay_seconds: 300
+    minimum_benchmark_changes: 5
+benchmark:
+  maximum_observation_skew_seconds: 120
+  input_method: manual_or_licensed_export
+provider_roles: [hot_reference, reference, historical, metadata, content, manual_benchmark]
+fallback_independence:
+  require_known_upstream_provenance: true
+  require_different_upstream: true
+global_system_gate: false

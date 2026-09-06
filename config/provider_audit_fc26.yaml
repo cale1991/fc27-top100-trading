@@ -1,0 +1,159 @@
+checked_at: '2026-09-04T17:30:00+02:00'
+providers:
+  futzip:
+    name: FUTZIP
+    tier: A
+    integration_status: PUBLIC_FEED
+    capabilities: [fc26, card_catalogue, market_moves, new_cards, sbcs, timestamped_events, stable_provider_ids, price_history_on_site]
+    markets: {pc: true, console: true, switch: false, rss_market_identity_explicit: false}
+    access:
+      automation: allowed_public_rss
+      authentication: none
+      approval_required: false
+      rate_limit: not_published
+      collection_modes: [EVENT_TRIGGERED, FULL_UNIVERSE_CONTEXT]
+    rights:
+      automation_allowed: true
+      persistent_storage: not_explicitly_documented
+      derived_analytics: not_explicitly_documented
+      commercial_use: not_established
+      redistribution: not_established
+      saas_display_raw: not_established
+      attribution_required: not_established
+    economics: {subscription_cost: 0, request_credit_cost: 0}
+    source_urls: ['https://futzip.com/feeds', 'https://futzip.com/method', 'https://futzip.com/']
+    evidence_notes: Public RSS page explicitly invites RSS bots/readers. Site says PC and console are separate, but RSS mover items do not expose platform identity; therefore feed prices are UNKNOWN/MARKET_CONTEXT only.
+    blockers: [rss_market_segment_not_explicit, storage_and_redistribution_rights_not_explicit]
+
+  ea_official:
+    name: EA SPORTS FC Official
+    tier: A
+    integration_status: PUBLIC_CONTENT
+    capabilities: [fc26, fc27, news, promos, rules, game_updates, announcements, pack_probabilities]
+    markets: {all: true, market_prices: false}
+    access: {automation: public_web_content, authentication: none, approval_required: false, collection_modes: [EVENT_TRIGGERED]}
+    rights: {automation_allowed: public_pages_only, persistent_storage: facts_and_provenance, derived_analytics: true, commercial_use: not_assumed, redistribution: not_assumed, saas_display_raw: not_assumed, attribution_required: source_link}
+    economics: {subscription_cost: 0}
+    source_urls: ['https://www.ea.com/games/ea-sports-fc/fc-26/news', 'https://www.ea.com/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-community-api-update']
+    evidence_notes: Authoritative content/context. FC Community API is restricted to approved partners and is not a public market-price feed for this project.
+    blockers: []
+
+  futdb:
+    name: FUT-DB
+    tier: B
+    integration_status: TRIAL_PENDING
+    capabilities: [fc26, player_catalogue, metadata, stats, prices, stable_ids, provider_timestamps]
+    markets: {pc: true, console: provider_defined, switch: not_verified}
+    access:
+      automation: DOCUMENTED_API
+      authentication: api_key
+      approval_required: false
+      rate_limit: 'Premium 20,000 requests/day'
+      collection_modes: [FULL_UNIVERSE, HOT_SET, WATCH_SET, ON_DEMAND]
+    rights: {automation_allowed: true_api, persistent_storage: account_terms_to_verify, derived_analytics: account_terms_to_verify, commercial_use: not_established, redistribution: not_established, saas_display_raw: not_established, attribution_required: not_established}
+    economics: {premium_monthly_eur: 79, premium_requests_per_day: 20000, bulk_price_endpoint: false}
+    source_urls: ['https://fut-db.com/', 'https://api.fut-db.com/']
+    evidence_notes: Runtime on vacation PC returned HTTP 429 with x-ratelimit-limit=0 and remaining=0. Keep optional; do not retry aggressively while quota is zero.
+    blockers: [current_account_no_quota, price_access_premium]
+
+  thecoinprinter:
+    name: The Coin Printer
+    tier: B
+    integration_status: APPROVAL_REQUIRED
+    capabilities: [fc26, player_metadata, pc_prices, console_prices, provider_timestamp, stats, stable_ids]
+    markets: {pc: true, console: true, switch: false}
+    access:
+      automation: DOCUMENTED_API
+      authentication: bearer_api_key
+      approval_required: true
+      rate_limit: '60 requests/minute'
+      collection_modes: [HOT_SET, WATCH_SET, ON_DEMAND]
+    rights: {automation_allowed: approved_partner_key, persistent_storage: plan_terms_to_verify, derived_analytics: plan_terms_to_verify, commercial_use: not_established, redistribution: not_established, saas_display_raw: not_established, attribution_required: not_established}
+    economics: {subscription_cost: contact_provider, rate_limit_per_minute: 60}
+    source_urls: ['https://www.thecoinprinter.com/docs', 'https://www.thecoinprinter.com/terms']
+    evidence_notes: Read-only approved-partner player search API; response documents pc_price, console_price and updated_at. No key configured in this project.
+    blockers: [api_key_and_paid_plan_required, storage_and_model_rights_need_plan_confirmation]
+
+  parse_futbin:
+    name: Parse.bot FUTBIN wrapper
+    tier: B
+    integration_status: OPTIONAL_STRUCTURED_PROVIDER
+    capabilities: [fc26_catalogue, player_details, pc_prices, ps_prices, market_trends, stats, playstyles, sbcs, objectives, evolutions, stable_futbin_ids]
+    markets: {pc: true, playstation_provider_label: true, xbox: not_explicit, switch: not_verified}
+    access:
+      automation: DOCUMENTED_COMMERCIAL_API
+      authentication: X-API-Key
+      approval_required: false_from_parse
+      enabled_by_default: false
+      rate_limit: '5/20/100/300/500 req/min by Parse plan'
+      collection_modes: [CATALOGUE_BOOTSTRAP, METADATA_REFRESH, HOT_SET, WATCH_SET, EVENT_TRIGGERED, ON_DEMAND]
+    rights:
+      automation_allowed: parse_documented_api_service
+      persistent_storage: not_explicitly_established
+      derived_analytics: not_explicitly_established
+      commercial_use: not_assumed
+      redistribution: not_assumed
+      saas_display_raw: not_assumed
+      attribution_required: not_established
+    economics:
+      credits_per_get_players_call: 1
+      approx_players_per_catalogue_page: 30
+      parse_plans: {free: '$0/200', hobby: '$30/1000', developer: '$100/5000', team: '$300/20000', company: '$1000/100000'}
+      estimated_full_crawl_calls_using_28490_card_scale: 950
+      estimated_credits_monthly_one_full_crawl_daily: 28500
+      estimated_credits_monthly_every_6h: 114000
+      estimated_credits_monthly_hourly: 684000
+    source_urls: ['https://parse.bot/marketplace/1b6234f9-0dfb-4cca-99b4-2d6d37aec6a7/futbin-com-api', 'https://parse.bot/pricing', 'https://www.futbin.com/tos']
+    evidence_notes: Parse documents an independent maintained commercial REST wrapper, not an official FUTBIN API. Private-system integration is optional and disabled by default. price_pc is PC reference data. price_ps remains a provider-labelled PlayStation segment and is not reinterpreted as Xbox/shared console. No full player historical price endpoint is documented.
+    blockers: [api_key_required, unofficial_upstream_dependency, storage_and_redistribution_rights_not_explicit, no_full_player_price_history]
+  futbin:
+    name: FUTBIN
+    tier: C
+    integration_status: MANUAL_REFERENCE
+    capabilities: [fc26, pc_prices, console_prices, metadata, price_history, market_indices, sbcs, evolutions]
+    markets: {pc: true, console: true, switch: not_verified}
+    access: {automation: prohibited_without_written_permission, authentication: consumer_account_optional, approval_required: true, collection_modes: [ON_DEMAND_MANUAL]}
+    rights: {automation_allowed: false_without_written_permission, persistent_storage: not_established, derived_analytics: written_permission_needed_for_automated_collection, commercial_use: license_required, redistribution: not_established, saas_display_raw: not_established, attribution_required: pricing_exception_for_students_content_creators}
+    economics: {public_data_feed_cost: not_published}
+    source_urls: ['https://www.futbin.com/tos']
+    evidence_notes: Current Terms section 13 prohibits scraping/data mining without written permission; business use also requires a license.
+    blockers: [no_public_developer_api, written_permission_required]
+
+  futgg:
+    name: FUT.GG
+    tier: C
+    integration_status: RESEARCH_REFERENCE
+    capabilities: [fc26, player_metadata, prices, sbcs, evolutions, community_api_partner]
+    markets: {pc: true, console: true, switch: not_verified}
+    access: {automation: prohibited_except_where_expressly_permitted, authentication: consumer, approval_required: true, collection_modes: [ON_DEMAND_MANUAL]}
+    rights: {automation_allowed: false_without_express_permission, persistent_storage: not_established, derived_analytics: ml_training_requires_prior_written_consent, commercial_use: restricted, redistribution: restricted, saas_display_raw: restricted, attribution_required: not_established}
+    economics: {public_data_feed_cost: not_published}
+    source_urls: ['https://www.fut.gg/terms', 'https://help.ea.com/en/articles/ea-sports-fc/community-api/']
+    evidence_notes: Terms prohibit automated means except where expressly permitted and require consent for ML use. EA approval for Community API does not grant this project market-data API access.
+    blockers: [no_public_market_data_api_permission, ml_training_permission_required]
+
+  futwiz:
+    name: FUTWIZ
+    tier: C
+    integration_status: RESEARCH_REFERENCE
+    capabilities: [fc26, pc_market_pages, console_market_pages, metadata, displayed_update_age, community_api_partner]
+    markets: {pc: true, console: true, switch: not_verified}
+    access: {automation: not_verified, authentication: consumer, approval_required: likely_for_data_feed, collection_modes: [ON_DEMAND_MANUAL]}
+    rights: {automation_allowed: not_established, persistent_storage: not_established, derived_analytics: not_established, commercial_use: not_established, redistribution: not_established, saas_display_raw: not_established, attribution_required: not_established}
+    economics: {public_api_cost: not_found}
+    source_urls: ['https://www.futwiz.com/', 'https://www.futwiz.com/contact', 'https://help.ea.com/en/articles/ea-sports-fc/community-api/']
+    evidence_notes: Useful FC26 PC/console human reference and EA Community API partner, but no documented public market-price API or server automation permission located.
+    blockers: [automation_permission_not_established, public_api_not_found]
+
+  futnext:
+    name: FUTNext / FC Enhancer
+    tier: C
+    integration_status: RESEARCH_REFERENCE
+    capabilities: [pc_and_console_price_surface]
+    markets: {pc: true, console: true, switch: not_verified}
+    access: {automation: permission_required, authentication: consumer_service, approval_required: true, collection_modes: [ON_DEMAND_MANUAL]}
+    rights: {automation_allowed: not_established, persistent_storage: not_established, derived_analytics: not_established, commercial_use: not_established, redistribution: not_established, saas_display_raw: not_established, attribution_required: not_established}
+    economics: {server_api_cost: not_published}
+    source_urls: ['https://www.futnext.com/tos']
+    evidence_notes: No documented server ingestion contract/provider timestamps established. Retained as research candidate only.
+    blockers: [permission_required, provenance_and_freshness_not_established]

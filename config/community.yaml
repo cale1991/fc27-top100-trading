@@ -1,0 +1,10 @@
+version: "2026-09-04.1"
+# Source adapters remain opt-in and must respect each source's public API/terms.
+sources: []
+reputation:
+  minimum_calls_for_full_confidence: 40
+  recent_form_half_life_days: 14
+  category_expertise_min_calls: 8
+  crowding:
+    early_consensus_max_market_move_pct: 2.0
+    late_consensus_min_market_move_pct: 5.0

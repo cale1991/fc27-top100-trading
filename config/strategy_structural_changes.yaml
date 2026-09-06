@@ -1,0 +1,33 @@
+version: 1
+note: "Qualitative structural differences used for temporal-validity priors; not measured profitability decay."
+cycle_weights:
+  FC26: 1.00
+  FC25: 0.72
+  FC24: 0.52
+  FIFA23: 0.36
+  FIFA22: 0.25
+changes:
+  - game_cycle: FC24
+    key: evolutions_introduced
+    strategies: [evolution-anticipation, chemistry-link-investing, substitute-card-effects]
+    difference_score: 0.80
+    source: https://www.ea.com/games/ea-sports-fc/pitch-notes/news/fc-24-ultimate-team-deep-dive
+    note: "Evolutions created a new eligibility-driven demand mechanism absent from FIFA22/23."
+  - game_cycle: FC25
+    key: evolution_slots_and_starter_changes
+    strategies: [evolution-anticipation, early-game-starter-meta-cycle]
+    difference_score: 0.45
+    source: https://www.ea.com/games/ea-sports-fc/fc-25/news/fc-25-pitch-notes-features-update
+    note: "Evolution availability and early-cycle supply changed versus FC24."
+  - game_cycle: FC26
+    key: repeatable_and_gk_evolutions
+    strategies: [evolution-anticipation, substitute-card-effects]
+    difference_score: 0.55
+    source: https://www.ea.com/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-fut-deep-dive
+    note: "Repeatable/GK Evolutions and related FUT structure alter eligibility demand."
+  - game_cycle: FC26
+    key: market_access_and_reward_supply_structure
+    strategies: [reward-supply-buying, fodder-investing, rating-band-investing, early-game-starter-meta-cycle]
+    difference_score: 0.50
+    source: https://www.ea.com/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-fut-deep-dive
+    note: "FC26 reward, access and supply structure can change old-cycle cadence assumptions."

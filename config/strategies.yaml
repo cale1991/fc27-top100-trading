@@ -1,0 +1,344 @@
+version: 1
+note: "Historical strategy definitions are evidence features, not a fixed trading universe or mandatory playbook. Quantitative fields remain null until measured."
+strategies:
+  - slug: fodder-investing
+    name: Fodder Investing
+    aliases: [high-rated fodder, rating fodder, fodder hold]
+    explanation: Buy SBC-usable ratings when supply is heavy/demand is weak and exit when desirable SBCs absorb supply.
+    mechanism: SBC requirements create rating-band demand while rewards/packs periodically create supply shocks.
+    card_categories: [fodder]
+    market_regimes: [supply_heavy, neutral, sbc_demand]
+    catalysts: [sbc, icon_sbc, hero_sbc, player_sbc, repeatable_sbc]
+    rule: {min_demand_score: 0.55}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: high
+  - slug: sbc-anticipation
+    name: SBC Anticipation
+    aliases: [sbc investing, requirement anticipation]
+    explanation: Position before a likely SBC creates demand for a rating, rarity, nation, league or position.
+    mechanism: Requirement-specific demand can reprice constrained card pools quickly.
+    card_categories: [fodder, totw, gold, special]
+    market_regimes: [pre_content, neutral]
+    catalysts: [sbc, marquee_matchups, upgrade_sbc, icon_sbc]
+    rule: {max_seconds_to_content: 21600}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: high
+  - slug: rating-band-investing
+    name: Rating-Band Investing
+    aliases: [cheapest-by-rating, rating ladder]
+    explanation: Trade relative value between cards with the same SBC rating utility.
+    mechanism: SBC squad-rating math creates substitutable demand bands that can temporarily desynchronise.
+    card_categories: [fodder]
+    market_regimes: [neutral, sbc_demand]
+    catalysts: [sbc]
+    rule: {min_demand_score: 0.45}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: medium
+  - slug: out-of-pack-investing
+    name: Out-of-Pack Investing
+    aliases: [oop, out of packs]
+    explanation: Buy cards whose supply is about to stop while residual gameplay/SBC demand remains.
+    mechanism: New supply falls toward zero while demand persists, allowing scarcity to reprice the card.
+    card_categories: [meta_gold, totw, promo, special]
+    market_regimes: [scarcity, neutral]
+    catalysts: [leaving_packs, totw, promo]
+    rule: {requires_out_of_packs: true}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: high
+  - slug: promo-panic-buying
+    name: Promo Panic Buying
+    aliases: [panic buying, crash buying]
+    explanation: Buy strong cards during pre-promo or content panic when forced selling exceeds fundamental deterioration.
+    mechanism: Anticipatory selling can overshoot before actual supply/demand is known.
+    card_categories: [meta_gold, promo, icon, hero]
+    market_regimes: [panic, supply_shock]
+    catalysts: [promo, black_friday, toty, tots]
+    rule: {max_price_change_1h: -0.05}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: high
+  - slug: post-promo-rebound
+    name: Post-Promo Panic Rebound
+    aliases: [rebound, post-crash rebound]
+    explanation: Buy oversold cards after the supply shock stabilises and normal squad demand returns.
+    mechanism: Supply spike ends or panic exhausts, allowing liquid desirable cards to mean-revert.
+    card_categories: [meta_gold, promo, icon, hero]
+    market_regimes: [reversion, post_supply_shock]
+    catalysts: [promo_end, packs_end]
+    rule: {max_price_change_24h: -0.08}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: high
+  - slug: reward-supply-buying
+    name: Reward-Supply Buying
+    aliases: [rewards dip, reward bidding]
+    explanation: Acquire cards while scheduled rewards create a temporary flood of listings.
+    mechanism: Concentrated pack openings and impatient sellers temporarily increase supply and lower auction clearing prices.
+    card_categories: [gold, fodder, meta_gold, promo]
+    market_regimes: [supply_heavy]
+    catalysts: [rivals_rewards, champions_rewards, squad_battles_rewards]
+    rule: {requires_in_packs: true}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: medium
+  - slug: content-time-supply-crash
+    name: Content-Time Supply Crash
+    aliases: [6pm dip, lightning-round bidding]
+    explanation: Buy during immediate pack/content supply spikes, often through bids or undercuts.
+    mechanism: Many new listings arrive faster than buyers absorb them.
+    card_categories: [gold, fodder, meta_gold, promo, icon]
+    market_regimes: [supply_shock]
+    catalysts: [store_pack, lightning_round, promo_release, rewards]
+    rule: {max_seconds_since_content: 7200}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: high
+  - slug: weekend-demand-cycle
+    name: Weekend Demand Cycle
+    aliases: [weekend league demand, champs team buying]
+    explanation: Trade cards whose gameplay demand rises as players build squads for competitive modes.
+    mechanism: Recurring squad-building demand can lift liquid meta cards when supply is not simultaneously overwhelming.
+    card_categories: [meta_gold, promo, icon, hero]
+    market_regimes: [demand_heavy]
+    catalysts: [champions, weekend]
+    rule: {min_demand_score: 0.55}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: medium
+  - slug: overnight-timezone-trading
+    name: Overnight / Timezone Trading
+    aliases: [overnight listing, late-night buying]
+    explanation: Exploit thinner liquidity, different regional participation and longer listings across overnight windows.
+    mechanism: Buyer/seller mix and listing depth vary by time zone, creating temporary spread/undercut opportunities.
+    card_categories: [meta_gold, promo, icon, hero]
+    market_regimes: [thin_liquidity]
+    catalysts: [timezone]
+    rule: {min_liquidity: 0.25}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: low
+  - slug: bidding-below-bin
+    name: Bidding Below BIN
+    aliases: [bid trading, open bidding]
+    explanation: Win auctions below prevailing executable value and relist into normal demand.
+    mechanism: Search friction and clustered expiries produce auction prices below BIN clearing value.
+    card_categories: [gold, fodder, meta_gold, promo, icon, hero]
+    market_regimes: [liquid, supply_heavy]
+    catalysts: [rewards, pack_supply]
+    rule: {min_liquidity: 0.45}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: low
+  - slug: undercut-acquisition
+    name: Undercut Acquisition
+    aliases: [below bin, snipe undercut]
+    explanation: Wait for impatient sellers to list materially below the reference/execution region.
+    mechanism: Seller urgency creates a persistent distribution of underpriced listings rather than a fixed discount.
+    card_categories: [gold, fodder, meta_gold, promo, icon, hero]
+    market_regimes: [liquid, neutral]
+    catalysts: [general]
+    rule: {min_liquidity: 0.50}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: low
+  - slug: lazy-listing
+    name: Lazy Listing
+    aliases: [lazy buyers, over-market listing]
+    explanation: Acquire below/near market and repeatedly list above the lowest BIN for convenience-driven buyers.
+    mechanism: Some buyers do not exhaustively search the market, creating a right-tail sale-price distribution.
+    card_categories: [meta_gold, promo, icon, hero, consumable]
+    market_regimes: [liquid, neutral]
+    catalysts: [general]
+    rule: {min_liquidity: 0.45}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: low
+  - slug: mass-bidding
+    name: Mass Bidding
+    aliases: [bulk bidding]
+    explanation: Place many disciplined bids to convert a modest per-card edge into scalable turnover.
+    mechanism: Auction dispersion plus volume creates repeated below-market fills.
+    card_categories: [gold, fodder, totw, consumable]
+    market_regimes: [supply_heavy, liquid]
+    catalysts: [rewards, pack_supply]
+    rule: {min_liquidity: 0.50}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: low
+  - slug: high-volume-flipping
+    name: High-Volume Flipping
+    aliases: [volume flips, liquid flips]
+    explanation: Repeatedly recycle capital through fast-selling cards with small but reliable after-tax edge.
+    mechanism: Turnover and acquisition edge dominate percentage ROI.
+    card_categories: [gold, fodder, meta_gold, promo]
+    market_regimes: [liquid]
+    catalysts: [general]
+    rule: {min_liquidity: 0.70}
+    ea_tax_sensitivity: very_high
+    ea_intervention_risk: medium
+  - slug: high-value-spread-trading
+    name: High-Value Spread Trading
+    aliases: [icon spread, expensive-card flipping]
+    explanation: Trade large absolute bid/BIN or listing-price dispersion in expensive cards.
+    mechanism: Thin books and heterogeneous seller urgency create large coin spreads, but slower fills.
+    card_categories: [icon, hero, premium_promo]
+    market_regimes: [thin_liquidity, high_value]
+    catalysts: [general]
+    rule: {min_liquidity: 0.20}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: medium
+  - slug: meta-card-trading
+    name: Meta-Card Trading
+    aliases: [meta flipping, gameplay demand]
+    explanation: Trade cards with strong persistent squad demand around supply and competitive-play cycles.
+    mechanism: Gameplay usefulness supports liquidity and repeat buyers independent of SBC utility.
+    card_categories: [meta_gold, promo]
+    market_regimes: [demand_heavy, liquid]
+    catalysts: [champions, gameplay_meta]
+    rule: {min_liquidity: 0.60}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: high
+  - slug: icon-trading
+    name: Icon Trading
+    aliases: [icon flipping]
+    explanation: Exploit larger absolute spreads and version-specific scarcity in Icons.
+    mechanism: High nominal prices and thinner listings create greater price dispersion and lazy-sale opportunities.
+    card_categories: [icon]
+    market_regimes: [high_value, thin_liquidity]
+    catalysts: [icon_sbc, promo, weekend]
+    rule: {min_liquidity: 0.15}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: high
+  - slug: hero-trading
+    name: Hero Trading
+    aliases: [hero flipping]
+    explanation: Trade Hero cards around chemistry utility, scarcity, promos and SBC substitute effects.
+    mechanism: Special chemistry utility can sustain demand while supply remains version-specific.
+    card_categories: [hero]
+    market_regimes: [high_value, neutral]
+    catalysts: [hero_sbc, promo, chemistry]
+    rule: {min_liquidity: 0.20}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: high
+  - slug: chemistry-link-investing
+    name: Chemistry / Link Investing
+    aliases: [link investing, nation links, league links]
+    explanation: Position in cards whose nation/league/club/position becomes unusually useful for SBC or squad chemistry.
+    mechanism: New requirements or desirable cards increase the utility of constrained links.
+    card_categories: [gold, fodder, meta_gold, special]
+    market_regimes: [sbc_demand, demand_heavy]
+    catalysts: [sbc, new_card, chemistry]
+    rule: {min_demand_score: 0.50}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: medium
+  - slug: evolution-anticipation
+    name: Evolution Anticipation
+    aliases: [evo trading, evo eligibility]
+    explanation: Buy cards likely to become unusually desirable when an Evolution's eligibility/upgrade path is revealed.
+    mechanism: Eligibility constraints can abruptly concentrate demand into a small pool of compatible cards.
+    card_categories: [gold, silver, promo, special]
+    market_regimes: [event_driven]
+    catalysts: [evolution, evo_leak]
+    rule: {min_demand_score: 0.45}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: very_high
+  - slug: substitute-card-effects
+    name: Substitute-Card Effects
+    aliases: [replacement effect, substitute repricing]
+    explanation: Trade cards whose demand changes when a stronger/cheaper substitute enters or leaves the market.
+    mechanism: New substitutes alter relative utility and willingness to pay across comparable cards.
+    card_categories: [meta_gold, promo, icon, hero]
+    market_regimes: [event_driven]
+    catalysts: [new_card, player_sbc, evolution, promo]
+    rule: {}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: high
+  - slug: card-leaving-pack-effects
+    name: Card-Leaving-Pack Effects
+    aliases: [pack exit, supply cutoff]
+    explanation: Model price behavior around the exact transition from actively supplied to unsupplied.
+    mechanism: Supply cutoff changes inventory replenishment and can expose latent demand/scarcity.
+    card_categories: [promo, totw, meta_gold]
+    market_regimes: [scarcity]
+    catalysts: [leaving_packs]
+    rule: {requires_out_of_packs: true}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: high
+  - slug: discard-near-discard
+    name: Discard / Near-Discard Trading
+    aliases: [discard investing, floor trading]
+    explanation: Buy close to quick-sell or structural minimum where downside is mechanically limited.
+    mechanism: A hard/near-hard floor compresses downside while future SBC/rarity demand preserves upside optionality.
+    card_categories: [totw, promo, gold, consumable]
+    market_regimes: [oversupplied]
+    catalysts: [sbc, leaving_packs]
+    rule: {}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: medium
+  - slug: leak-speculation-trading
+    name: Leak / Speculation Trading
+    aliases: [leak trading, rumour trading]
+    explanation: Position on credible pre-release information while explicitly pricing leak reliability and crowding.
+    mechanism: Information reaches market participants unevenly before confirmed content changes demand/supply.
+    card_categories: [fodder, meta_gold, promo, special]
+    market_regimes: [pre_content, event_driven]
+    catalysts: [credible_leak]
+    rule: {max_seconds_to_content: 86400}
+    ea_tax_sensitivity: low
+    ea_intervention_risk: very_high
+  - slug: new-promo-supply-patterns
+    name: New-Promo Supply Patterns
+    aliases: [promo launch supply, first-hour promo]
+    explanation: Trade predictable supply/discovery phases immediately after a new promo enters packs.
+    mechanism: Initial pack opening, price discovery and substitute effects create short-lived dislocations.
+    card_categories: [promo, meta_gold, icon, hero]
+    market_regimes: [supply_shock, price_discovery]
+    catalysts: [promo_release]
+    rule: {requires_promo: true, max_seconds_since_content: 10800}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: very_high
+  - slug: early-game-starter-meta-cycle
+    name: Early-Game Starter / Meta Cycle
+    aliases: [starter meta, first weekend rise]
+    explanation: Trade scarce affordable meta cards as coin balances grow and competitive squads form early in the cycle.
+    mechanism: Demand grows faster than supply/coin affordability for specific usable cards during launch.
+    card_categories: [meta_gold, starter_meta]
+    market_regimes: [early_cycle, demand_heavy]
+    catalysts: [early_access, full_launch, first_champions]
+    rule: {min_demand_score: 0.50}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: high
+  - slug: pre-content-positioning
+    name: Pre-Content Positioning
+    aliases: [pre-6pm positioning, content anticipation]
+    explanation: Enter before a scheduled content window when event probabilities imply favorable demand/supply asymmetry.
+    mechanism: Scheduled EA content produces repeatable timing structure even when exact content is uncertain.
+    card_categories: [fodder, totw, gold, promo, meta_gold]
+    market_regimes: [pre_content]
+    catalysts: [scheduled_content, sbc, promo]
+    rule: {max_seconds_to_content: 21600}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: very_high
+  - slug: post-content-overreaction-reversion
+    name: Post-Content Overreaction / Reversion
+    aliases: [6pm overreaction, content reversion]
+    explanation: Fade price moves that exceed the actual fundamental supply/demand impact of newly released content.
+    mechanism: Fast crowd reactions can overshoot before requirements, pack weight and substitute quality are understood.
+    card_categories: [fodder, meta_gold, promo, icon, hero]
+    market_regimes: [reversion, event_driven]
+    catalysts: [sbc, promo, evolution, store_pack]
+    rule: {max_seconds_since_content: 7200}
+    ea_tax_sensitivity: medium
+    ea_intervention_risk: high
+  - slug: sbc-solution-trading
+    name: SBC Solution Trading
+    aliases: [futbin solution trading, solution investing, tech avion]
+    explanation: Buy cards likely to become heavily used in popular low-cost SBC solutions before solution traffic reprices them.
+    mechanism: Community solution pages concentrate demand into a small set of cards, and price databases may lag the in-game move.
+    card_categories: [gold, silver, fodder]
+    market_regimes: [sbc_demand]
+    catalysts: [sbc, marquee_matchups]
+    rule: {min_demand_score: 0.55, max_seconds_since_content: 7200}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: medium
+  - slug: clubstock
+    name: Clubstock
+    aliases: [club stock, one-of-each]
+    explanation: Accumulate one of many cheap, useful cards during supply and sell individual cards when later SBCs create demand.
+    mechanism: Broad diversification captures unpredictable requirement-specific spikes while buying near structural floors limits downside.
+    card_categories: [gold, fodder, totw]
+    market_regimes: [supply_heavy, neutral]
+    catalysts: [rewards, upgrade_sbc, marquee_matchups, flash_sbc]
+    rule: {}
+    ea_tax_sensitivity: high
+    ea_intervention_risk: medium

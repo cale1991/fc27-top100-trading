@@ -1,0 +1,24 @@
+version: 1
+production_universe: broadest_practical_observable_pc_market
+pipeline: [broad_observable_market, discovery_filtering, opportunity_scoring, ranked_candidates, execution_verification, trade_decision]
+discovery:
+  minimum_score: 0.35
+  max_ranked_candidates: 100
+  no_fixed_watchlist: true
+  quality_over_quantity: true
+manual_verification:
+  enabled: true
+  require_positive_expected_information_value: true
+  execution_confidence_threshold: 0.80
+  default_listing_sample_request: 10
+attention:
+  recompute_seconds: 120
+  allocation_ttl_seconds: 900
+  tiers:
+    critical: 120
+    hot: 120
+    active: 300
+    background: 900
+acquisition_model:
+  universal_discount_assumption: prohibited
+  segment_by: [card, price_tier, category, liquidity, time_of_day, market_regime, content_timing, volatility]

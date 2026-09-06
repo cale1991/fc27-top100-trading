@@ -1,0 +1,227 @@
+version: 1
+created_at: '2026-09-04T00:00:00+02:00'
+platform: pc
+notes: Fixed 50-card basket for provider qualification, benchmarking, and controlled
+  tests only. It is never the production trading universe, permanent watchlist, or
+  primary candidate set.
+cards:
+- key: gold_harry_kane
+  name: Harry Kane
+  category: fodder
+  version: Rare Gold
+- key: gold_alisson
+  name: Alisson
+  category: fodder
+  version: Rare Gold
+- key: gold_courtois
+  name: Thibaut Courtois
+  category: fodder
+  version: Rare Gold
+- key: gold_oblak
+  name: Jan Oblak
+  category: fodder
+  version: Rare Gold
+- key: gold_mapi_leon
+  name: Mapi León
+  category: fodder
+  version: Rare Gold
+- key: gold_patri_guijarro
+  name: Patri Guijarro
+  category: fodder
+  version: Rare Gold
+- key: gold_irene_paredes
+  name: Irene Paredes
+  category: fodder
+  version: Rare Gold
+- key: gold_hegerberg
+  name: Ada Hegerberg
+  category: fodder
+  version: Rare Gold
+- key: gold_lewandowski
+  name: Robert Lewandowski
+  category: fodder
+  version: Rare Gold
+- key: gold_kimmich
+  name: Joshua Kimmich
+  category: fodder
+  version: Rare Gold
+- key: gold_lautaro
+  name: Lautaro Martínez
+  category: fodder
+  version: Rare Gold
+- key: gold_bruno
+  name: Bruno Fernandes
+  category: fodder
+  version: Rare Gold
+- key: gold_mbappe
+  name: Kylian Mbappé
+  category: meta_gold
+  version: Rare Gold
+  ea_definition_id: 231747
+- key: gold_vinicius
+  name: Vinícius Jr.
+  category: meta_gold
+  version: Rare Gold
+- key: gold_salah
+  name: Mohamed Salah
+  category: meta_gold
+  version: Rare Gold
+- key: gold_vvd
+  name: Virgil van Dijk
+  category: meta_gold
+  version: Rare Gold
+- key: gold_bellingham
+  name: Jude Bellingham
+  category: meta_gold
+  version: Rare Gold
+- key: gold_yamal
+  name: Lamine Yamal
+  category: meta_gold
+  version: Rare Gold
+- key: gold_putellas
+  name: Alexia Putellas
+  category: meta_gold
+  version: Rare Gold
+- key: gold_bonmati
+  name: Aitana Bonmatí
+  category: meta_gold
+  version: Rare Gold
+- key: gold_theo
+  name: Theo Hernández
+  category: meta_gold
+  version: Rare Gold
+- key: gold_saliba
+  name: William Saliba
+  category: meta_gold
+  version: Rare Gold
+- key: icon_pele_95
+  name: Pelé
+  rating: 95
+  category: icon_hero
+  version: Icon
+  ea_definition_id: 237067
+- key: icon_ronaldinho_93
+  name: Ronaldinho
+  rating: 93
+  category: icon_hero
+  version: Icon
+- key: icon_ronaldo
+  name: Ronaldo
+  category: icon_hero
+  version: Icon
+- key: icon_cruyff
+  name: Johan Cruyff
+  category: icon_hero
+  version: Icon
+- key: icon_gullit
+  name: Ruud Gullit
+  category: icon_hero
+  version: Icon
+- key: icon_zidane
+  name: Zinedine Zidane
+  category: icon_hero
+  version: Icon
+- key: icon_maldini
+  name: Paolo Maldini
+  category: icon_hero
+  version: Icon
+- key: icon_vieira
+  name: Patrick Vieira
+  category: icon_hero
+  version: Icon
+- key: icon_mia_hamm
+  name: Mia Hamm
+  category: icon_hero
+  version: Icon
+- key: icon_cafu
+  name: Cafu
+  category: icon_hero
+  version: Icon
+- key: icon_puskas
+  name: Ferenc Puskás
+  category: icon_hero
+  version: Icon
+- key: hero_ginola
+  name: David Ginola
+  category: icon_hero
+  version: Hero
+- key: hero_yaya_toure
+  name: Yaya Touré
+  category: icon_hero
+  version: Hero
+- key: hero_lucio
+  name: Lúcio
+  category: icon_hero
+  version: Hero
+- key: summer_stars_mbappe_98
+  name: Kylian Mbappé
+  rating: 98
+  category: promo
+  version: Summer Stars
+- key: summer_stars_messi_98
+  name: Lionel Messi
+  rating: 98
+  category: promo
+  version: Summer Stars
+- key: summer_stars_bellingham_98
+  name: Jude Bellingham
+  rating: 98
+  category: promo
+  version: Summer Stars
+- key: summer_stars_haaland_98
+  name: Erling Haaland
+  rating: 98
+  category: promo
+  version: Summer Stars
+- key: summer_stars_salah_98
+  name: Mohamed Salah
+  rating: 98
+  category: promo
+  version: Summer Stars
+- key: summer_stars_kane_98
+  name: Harry Kane
+  rating: 98
+  category: promo
+  version: Summer Stars
+- key: futties_vvd_99
+  name: Virgil van Dijk
+  rating: 99
+  category: promo
+  version: FUTTIES
+- key: futties_wirtz_99
+  name: Florian Wirtz
+  rating: 99
+  category: promo
+  version: FUTTIES
+- key: futties_mia_hamm_99
+  name: Mia Hamm
+  rating: 99
+  category: promo
+  version: FUTTIES
+- key: futties_marcelo_99
+  name: Marcelo
+  rating: 99
+  category: promo
+  version: FUTTIES
+- key: futties_modric_99
+  name: Luka Modrić
+  rating: 99
+  category: promo
+  version: FUTTIES
+- key: toty_mbappe_96
+  name: Kylian Mbappé
+  rating: 96
+  category: promo
+  version: TOTY
+- key: toty_vvd_95
+  name: Virgil van Dijk
+  rating: 95
+  category: promo
+  version: TOTY
+- key: fcpro_ronaldinho_99
+  name: Ronaldinho
+  rating: 99
+  category: promo
+  version: FC Pro Leagues Upgraded
+purpose: provider_qualification_benchmark_only
+production_use_forbidden: true

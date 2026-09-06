@@ -1,0 +1,13 @@
+version: "2026-09-04.1"
+confidence:
+  screenshot_with_5_plus_exact: 0.98
+  manual_5_plus_exact: 0.95
+  manual_3_4_exact: 0.90
+  manual_2_exact: 0.82
+  manual_1_exact: 0.70
+  manual_approximate: 0.50
+  screenshot_only: 0.75
+  minimum: 0.20
+  age_half_life_seconds: 600
+  inconsistency_multiplier: 0.85
+execution_ttl_seconds: 300

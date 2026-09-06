@@ -1,0 +1,16 @@
+.git
+.github
+.env
+.venv
+__pycache__
+.pytest_cache
+.ruff_cache
+*.pyc
+*.log
+artifacts
+mlruns
+data/raw/*
+data/imports/*
+web/node_modules
+web/.next
+data/uploads/*
